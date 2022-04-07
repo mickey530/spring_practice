@@ -57,4 +57,15 @@ public class BoardMapperTests {
 		boardMapper.delete(1);
 	}
 	
+	@Test
+	public void boardUpdate() {
+		BoardVO vo = new BoardVO();
+		
+		vo.setBno(1); // 수정할 게시글 번호
+		vo.setTitle("수정할 제목");
+		vo.setContent("수정할 내용");
+		
+		boardMapper.update(vo);
+	}
+	
 }
