@@ -8,5 +8,17 @@
 </head>
 <body>
 	${board }
+	<a href="/boardList">글 목록</a>
+	
+	<form action="/boardUpdateForm" method="post">
+		<input type="hidden" name="bno" value="${board.bno }">
+		<input type="submit" value="수정">
+	</form>
+	
+	<from action="/boardDelete" method="psot">
+		<input type="hidden" name="bno" value="${board.bno }">
+		<input type="submit" value="삭제">
+	</from>
+	
 </body>
 </html>
