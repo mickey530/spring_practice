@@ -11,7 +11,10 @@
 	
 	
 	<![CDATA[
-		SELECT * FROM board_tbl ORDER BY bno DESC
+		SELECT * FROM
+			(SELECT /*+ INDEX_DESC(board_tbl pk_board) */
+			rownum rn, board_tbl.* FROM board_tbl WHERE rownum <= #{pageNum}*10)
+				WHERE rn > (#{pageNum}-1)*10
 	]]>
 	</select>
 	

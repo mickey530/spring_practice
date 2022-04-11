@@ -8,7 +8,7 @@
 </head>
 <body>
 	<form action="/boardUpdate" method="post">
-		글 번호 : {board.bno}
+		<input type="hidden" name="bno" value="${board.bno}">
 		제목 : <input type="text" name="title" value="${board.title}">
 		작성자 : <input type="text" name="writer" value="${board.writer}">
 		내용 : <textarea name="content">${board.content}</textarea>

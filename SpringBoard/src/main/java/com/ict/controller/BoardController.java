@@ -30,12 +30,12 @@ public class BoardController {
 	// /boardList 주소를 get 방식으로 선언해주세요.
 	// 메서드 내부에서는 boardMapper의 .getAllList를 호출해 그 결과를 바인딩합니다.
 	
-	@GetMapping("/boardList")
-	public String boardList(Model model) {
-		System.out.println("진입은 하냐");
-		List<BoardVO> bList = boardMapper.getList();
-		log.info("넘어온 글 관련 정보 목록 : " + bList);
-		model.addAttribute("bList", bList);
+	@GetMapping("/boardList/{pageNum}")
+	public String boardList(@PathVariable int pageNum, Model model) {
+		// model.addAttribute("바인딩이름", 바인딩자료);
+		List<BoardVO> boardList = boardMapper.getList(pageNum);
+		log.info("넘어온 글 관련 정보 목록 : " + boardList);
+		model.addAttribute("boardList", boardList);
 		return "boardList";
 	}
 	
@@ -95,6 +95,22 @@ public class BoardController {
 		model.addAttribute("board", board);
 		return "boardUpdateForm";
 	}
+	
+	// /boardUpdate를 post 방식으로 접속하는 메서드를 만들겠습니다.
+	// update(BoardVO)를 실행해서 폼에서 날려준 데이터를 토대로
+	// 해당 글의 내용이 수정되도록 만들어주시면 됩니다.
+	// 수정 후에는 수정요청이 들어온 글 번호의 디테일 페이지로 리다이렉트 시켜주세요.
+	
+	@PostMapping("boardUpdate")
+	public String boardUpdate(BoardVO board) {
+		boardMapper.update(board);
+		return "redirect:/boardDetail/" + board.getBno();
+	}
+	
+	
+	
+	
+	
 	
 	
 	
