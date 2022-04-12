@@ -1,0 +1,21 @@
+package com.ict.domain;
+
+import lombok.Data;
+
+@Data
+public class PageMaker {
+
+	private int totalBoard;
+	private int startPage;
+	private int endPage;
+	private boolean prev;
+	private boolean next;
+	
+	// 만약 페이지 버튼 개수를 유동적으로 가져가고 싶은 경우
+	// displayPageNum을 선언합니다.
+	private int displayPageNum;
+	
+	public void calcData() {
+		this.displayPageNum = 10;
+	}
+}
